@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+    }
+    #div {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+
+    }
+
+    #mini_container {
+        border: 1px solid;
+        border-radius: 10px;
+        width: 200px;
+        height: auto;
+        margin: auto;
+
+    }
+</style>
+
+<body>
+    <h1>This is Cart Page</h1>
+    <a href="Home.HTML">Home</a>
+    <div id="div"></div>
+</body>
+
+</html>
+<script>
+    var abc = JSON.parse(localStorage.getItem("cart"));
+    var container = document.getElementById("div");
+    
+    console.log(abc);
+    displaydata(abc);
+    function displaydata(arr){
+        container.innerHTML ="";
+        abc.forEach((ele,i) => {
+        var child_container = document.createElement("div")
+        child_container.id = "mini_container";
+
+        var id = document.createElement("h2");
+        id.textContent = ele.id;
+        var name = document.createElement("p");
+        name.textContent = ele.name
+        var username = document.createElement("p");
+        username.textContent = ele.username;
+        var email = document.createElement("p");
+        email.textContent = ele.email;
+        var button = document.createElement("button")
+        button.textContent = "Remove to cart"
+        button.addEventListener("click" , function(){
+            remove(ele, i)
+        })
+       
+
+        child_container.append(id, name, username, email, button);
+        container.appendChild(child_container);
+
+
+    });
+    }
+    function remove(ele, i){
+        abc.splice(i, 1);
+        displaydata(abc);
+        localStorage.setItem("cart", JSON.stringify(abc));
+    }
+   
+  
+</script>
