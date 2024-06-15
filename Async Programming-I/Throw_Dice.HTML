@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* justify-content: center; */
+        background-color: rgb(154, 140, 35);
+    }
+
+    h1 {
+        height: 40px;
+        width: 100px;
+        background-color: black;
+        color: #ffff;
+        /* margin: auto; */
+        margin-top: 10px;
+        text-align: center;
+
+    }
+
+    #x {
+        background-color: yellow;
+        color: black;
+        width: 150px;
+    }
+
+    #y {
+        background-color: green;
+        color: black;
+        width: 150px;
+    }
+
+    #z {
+        background-color: red;
+        color: black;
+        width: 150px;
+    }
+
+    #btn {
+        height: 30px;
+        width: 100px;
+        background-color: rgb(14, 94, 255);
+        font-family: sans-serif;
+        color: #ffff;
+        font-size: 1.5rem;
+
+    }
+</style>
+
+<body>
+    <h1 id="a">a</h1>
+    <h1 id="b">b</h1>
+    <h1 id="c">c</h1>
+    <button id="btn">Roll</button>
+    <h1 id="x" class="same">Winner</h1>
+    <h1 id="y" class="same">Second</h1>
+    <h1 id="z" class="same">Loser</h1>
+</body>
+
+</html>
+<script>
+    var A = document.getElementById("a")
+    var B = document.getElementById("b")
+    var C = document.getElementById("c")
+    var btn = document.getElementById("btn")
+    var frist = document.getElementById("x")
+    var sec = document.getElementById("y")
+    var last = document.getElementById("z")
+    btn.addEventListener("click", function () {
+        call1();
+    })
+    function call1() {
+
+        do {
+
+            var x = Math.floor(Math.random() * 6) + 1;
+            var y = Math.floor(Math.random() * 6) + 1;
+            var z = Math.floor(Math.random() * 6) + 1;
+        } while (x === y || y === z || z === x);
+
+        A.textContent = "A=" + x;
+        B.textContent = "B=" + y;
+        C.textContent = "C=" + z;
+        var arrr = [
+            { value: x, name: "a" },
+            { value: y, name: "b" },
+            { value: z, name: "c" }
+        ]
+        arrr.sort(function (a, b) {
+            return b.value - a.value;
+        })
+        var winner = arrr[0].value;
+        var second = arrr[1].value;
+        var loser = arrr[2].value;
+
+        frist.textContent = winner;
+        sec.textContent = second;
+        last.textContent = loser;
+        // console.log(winner,second,loser);
+
+    }
+
+
+
+</script>
