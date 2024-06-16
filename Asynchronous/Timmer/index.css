@@ -1,0 +1,33 @@
+body {
+    background-color: rgb(205, 124, 214);
+    margin-top: 30vh;
+}
+
+.container {
+    width: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.container h1 {
+    font-size: 5rem;
+    color: #fff;
+    text-shadow: 1px rgb(255, 255, 0);
+    
+}
+
+.container2 {
+    width: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.container2 button {
+    height: 50px;
+    width: 30%;
+    font-size: 1.7rem;
+    border-radius: 10px;
+}
