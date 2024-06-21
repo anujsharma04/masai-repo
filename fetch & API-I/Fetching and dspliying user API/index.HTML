@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+</head>
+<style>
+    *{
+    margin: 0;
+}
+#cont {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    margin: 0 20px;
+    
+}
+
+#childdiv {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center;
+    justify-content: center;
+    background-color: #94029e;
+    border-radius: 10px;
+    /* height: 300px; */
+}
+#image{
+    width: 100%;
+}
+#childdiv> h2, h3, p{
+    color:  white;
+    
+}
+</style>
+
+<body>
+    <div id="cont"></div>
+</body>
+
+</html>
+<script src="Index.JS"></script>

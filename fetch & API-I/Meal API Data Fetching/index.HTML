@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="getCategoriesData">CategoriesData</button>
+    <button id="getIngredientData">IngredientData</button>
+</body>
+</html>
+<script>
+
+   document.getElementById("getCategoriesData").addEventListener("click",async function(){
+       let res1 =fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood")
+        try {
+            let getfetch1 = await res1
+            let data1 = await getfetch1.json()
+            console.log(data1)
+        } catch (error1) {
+            console.log("something went wrong.")
+        }
+    } )
+   document.getElementById("getIngredientData").addEventListener("click",async function(){
+       let res2 =fetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast")
+        try {
+            let getfetch2 = await res2
+            let data2 = await getfetch2.json()
+            console.log(data2)
+        } catch (error2) {
+            console.log("something went wrong.")
+        }
+    } )
+  
+
+
+
+</script>
