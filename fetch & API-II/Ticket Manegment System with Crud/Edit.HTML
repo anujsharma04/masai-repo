@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #48acff;
+    }
+
+    #container {
+        background-color: #48acff;
+        padding: 20px;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: auto;
+        margin-top: 150px;
+        box-shadow: 0px 0px 49px -2px rgba(0, 0, 0, 0.48);
+    }
+
+    #container>#title,
+    #desc {
+        text-align: center;
+        font-size: 1.2rem;
+        width: 59%;
+        height: 40px;
+        margin: auto;
+        border: none;
+    }
+
+    #container>#btn1,
+    #btn2,
+    #btn3 {
+        width: 60%;
+        height: 40px;
+        margin: auto;
+        border-radius: 10px;
+        background-color: rgb(255, 204, 0);
+        font-size: 1.5rem;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: rgb(0, 60, 255);
+    }
+
+    #h1 {
+        margin: auto;
+        color: rgb(255, 255, 255);
+
+    }
+</style>
+
+
+
+
+<body>
+    <div id="container">
+        <h1 id="h1">Edit Section</h1>
+        <input type="text" placeholder="Title" id="title">
+        <button id="btn1">Only Title</button>
+        <input type="text" placeholder="Description" id="desc">
+        <button id="btn2">Only Description</button>
+        <button id="btn3">Both All</button>
+
+    </div>
+</body>
+
+
+</html>
+<script src="Edit.JS">
+
+</script>
