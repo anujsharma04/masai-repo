@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container"></div>
+</body>
+
+</html>
+
+<!-- link react script file  -->
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<!-- Add one more file babel  -->
+
+<script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+
+<!-- if i am using babel type is text/babel -->
+
+<script type="text/babel">
+
+    // create a callback function and inside alert massage
+
+    const btn = () => {
+        alert("Hello")
+    };
+
+    // create a variable and store p tag and p tag inside store css
+
+    const ptag = <p style={{ color: "#ffff", backgroundColor: "red", margin: "auto", width: "200px", height: "40px" }}>React Is A Javascript Library</p>
+
+    // create a variable and store button tag and button tag inside store css
+
+    const button = <div style={{ width: "30%", margin: "auto" }}><button onClick={btn} style={{ color: "#ffff", backgroundColor: "red", margin: "auto", width: "100%", height: "50px", fontweight: "600" }}>Alert Hello</button></div>;
+
+    // create a variable with name element and store react.fragment inside store two variable ptag and button
+
+    const element = (
+        <React.Fragment>
+            {button}
+            {ptag}
+        </React.Fragment>
+    )
+
+    // create react dom and get id container
+
+    const root = ReactDOM.createRoot(document.getElementById("container"));
+
+    // and react element render with react dom
+
+    root.render(element);
+
+
+</script>
