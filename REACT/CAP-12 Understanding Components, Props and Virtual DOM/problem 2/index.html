@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greeting Component</title>
+</head>
+
+<body>  
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    //create a callback function and return h3 tag , li inside of ul and inside of li tag pass a props 
+
+    const Itemlist = ({Fruite}) => {
+
+
+       return <>
+            <h3>unorderlist</h3>
+            <ul><li>{Fruite}</li></ul>
+        </>
+    }
+
+    // create a second callback function name app and return h1 tag , call listitem components
+
+    const App = () => {
+       return<>
+        <h1>itemlist</h1>
+        < Itemlist Fruite="Apple" />
+        < Itemlist Fruite="banana" />
+        < Itemlist Fruite="cherry" />
+        </>
+    }
+
+    // than create a virtual dom and render app component
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+
+    root.render(<App />);
+
+</script>
