@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+</head>
+
+<style>
+
+</style>
+
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // Your JSX code here
+
+        //imageurl store in  variable
+
+        const imageurl = "https://wooprod.gsplugins.com/wp-content/uploads/2023/11/theme71.png"
+
+
+        //I added as many properties as needed according to the UI in a variable
+
+        const mystyle = {
+            width: "100%",         
+            height: "auto",      
+            borderRadius: "10px", 
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
+            border: "2px solid #000",
+        };
+
+        const fristdiv = {
+            width: "100%",
+            fontFamily: "Arial",
+            fontSize: "1.3rem"
+        }
+
+        const seconddiv = {
+            fontFamily: "Arial",
+            fontSize: "1.3rem"
+        }
+
+        const thirddiv = {
+            fontFamily: "Arial",
+            fontWeight: "500",
+            fontSize:"0.8rem"
+        }
+
+        const btndiv = {
+            width: "100%",
+            fontFamily: "Arial",
+            fontWeight: "700",
+            fontSize: "1.2rem",
+            height: "50px",
+            color: "white",
+            backgroundColor: "black"
+        }
+
+        const second_minidiv = {
+            display: "grid",
+            gridTemplateColumns: "repeat(2 , 1fr)",
+
+          
+            width: "100%"
+        }
+        
+
+        // then write JSX file in a variable 
+        
+
+        const Display = (
+            <>
+                <div style={fristdiv}>
+                    <div style={{ width: "100%" }}><img src={imageurl} alt="IMAGE" style={mystyle} /></div>
+                    <h1>Automatic Watch</h1>
+                    <p>$350.00 USD</p>
+                    <p style= {{color:"#718096" , fontSize:"2rem"}}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae dolor veritatis nulla! Mollitia error debitis quia eos placeat earum provident culpa.</p>
+                    <p style= {{ fontSize:"2rem"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore rerum natus quam deleniti laboriosam alias provident quidem molestias excepturi temporibus vel culpa illum eum</p>
+                </div>
+
+                <div style={seconddiv}>
+                    <h3 style={{color:"#D79E2E"}}>FEATURES</h3>
+                    <div style={second_minidiv}>
+                        <p>choronograph</p>
+                        <p>Master choronometer certified</p>
+                        <p>techymeter</p>
+                        <p>Anti-magnatic</p>
+                        <p>choronometer</p>
+                        <p>Small second</p>
+                    </div>
+                </div>
+                <div style={thirddiv}>
+                    <h1 style={{color:"#D79E2E" }}>PRODUCT DETAILS</h1>
+                    <h2>Between lungs: 20mm</h2>
+                    <h2>Bracelet:leather strap </h2>
+                    <h2>Case: steel</h2>
+                    <h2>Case diameter: 42 mm</h2>
+                    <h2>Dail color: Black</h2>
+                    <h2>Crystal: Domed, scratch-resistant sapphire crystal with anti-reflective treatment inside</h2>
+                    <h2>Water resistance: 5 bar (50 meters / 167 feet)</h2>
+                </div>
+                <button style={btndiv}>Add to card</button>
+                <footer style={{width:"100%"}}><p style={{textAlign: "center" , fontSize:"1.2rem", fontWeight:"600", fontFamily:"Arial"}}>2-3 business day delivery</p></footer>
+            </>
+        )
+
+        //then render JSX variable
+
+        const root1 = ReactDOM.createRoot(document.getElementById('root'));
+        root1.render(Display);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title >JSX and Babel</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // Your JSX code here
+
+        const Print = (<>
+            <div style={{ width: '30%', margin:'auto' , fontSize: '20px' }}>
+                <p>React is a javascript laibrary</p>
+                <button style={{ margin:'0 60px'}} onClick ={() => alert("Hello")}>Alert Hello</button>
+       
+            </div>
+        </>);
+
+        // const Print = (
+        //     <>
+        //         <div >
+        //             <h1>Anujsharma</h1>
+        //             <button>Alert Hello</button>
+        //         </div>
+        //     </>
+        // )
+
+        // const root = ReactDom.createRoot(document.getElementById('root'))
+        // root.render(print)
+
+        const root1 = ReactDOM.createRoot(document.getElementById('root'));
+        root1.render(Print);
+
+
+
+    </script>
+</body>
+
+</html>

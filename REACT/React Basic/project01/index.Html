@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Template</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // Your task starts here
+
+    // react.createElement takes three arguments 
+    // 1.type 2.props 3.children(type anything)
+
+
+    let demo = React.createElement(
+        "h1", { style: { color: "blue" } }, "Seize the day"
+    )
+
+    //ReactDom.render takes two arguments 
+    // element: The element that needs to be rendered in the DOM.
+    // containerElement: Where to render in the dom.
+
+
+    ReactDOM.render(
+        demo,
+        document.getElementById('root')
+    );
+
+
+    // Traditional JavaScript: Imperative, manual DOM manipulation, requires explicit updates based on the state.
+
+    // React: Declarative, automatic UI updates based on state changes, with optimized performance via the virtual DOM.
+
+
+</script>
+
+</html>

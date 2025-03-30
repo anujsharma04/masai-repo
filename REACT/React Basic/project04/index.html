@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+</head>
+<style>
+    /* #root{
+        border-radius: ;
+    } */
+</style>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // Your JSX code here
+
+
+        // image url store in a veriable 
+
+        const image = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTi9z465tB8cqlVyR8wQPPzTOKwhXAVbVOsyt1Dl91nb7yUOnrf"
+
+
+        // All Css properties are define in a veriable 
+
+        const buttonstyle = {
+            fontSize: "1.2rem",
+            fontFamily: "Arial",
+            color: "white",
+            borderRadius: "15px",
+            backgroundColor: "DodgerBlue",
+
+        }
+
+
+        const inputstyle = {
+            backgroundColor: "#E7E9EB",
+            height: "40px",
+            width: "80%",
+            border: "none",
+            borderRadius: "15px",
+            padding: "0 20px"
+        }
+
+        const divstyle = {
+
+            padding: "10px",
+            fontFamily: "Arial",
+            margin: "auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+
+        };
+
+
+
+
+
+        const Display = (
+            <>
+                <div style={divstyle}>
+                    <img src={image} alt="image" />
+                    <h1>SUBSCRIBE</h1>
+                    <h2>Subscribe to our newsletter & stay up to date!</h2>
+                    <div style={{ display: "flex" }}>
+                        <div>
+                            <input type="text" placeholder="Chanel Name" style={inputstyle} />
+                        </div>
+                        <button style={buttonstyle} onClick={() => { alert("Subscribed") }}>Subscribe</button>
+                    </div>
+
+                </div>
+            </>
+        )
+
+
+
+        const root1 = ReactDOM.createRoot(document.getElementById('root'));
+        root1.render(Display);
+
+
+
+    </script>
+</body>
+
+</html>
