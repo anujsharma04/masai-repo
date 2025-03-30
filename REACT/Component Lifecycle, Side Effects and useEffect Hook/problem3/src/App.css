@@ -1,0 +1,26 @@
+.items{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+
+}
+#item{
+  border: 2px solid red;
+  padding: 10px;
+  text-align: center;
+  background-color: aquamarine;
+}
+#btn{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding:20px 0;
+}
+#btn>button{
+  height: 25px;
+  width: auto;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: rgb(255, 251, 0);
+  color: #ff0000;
+}

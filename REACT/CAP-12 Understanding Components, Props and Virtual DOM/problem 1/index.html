@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greeting Component</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Your Greeting component code will go here
+
+    
+    // create a cpmponents cart and return props inside p tag
+
+
+    const Cart = ({title , disc}) => {
+      return <>
+      <p>{title} {disc}</p>
+        </>
+    }
+
+    // create a cpmponents and call the cart components and return props 
+
+    const App = () => {
+      return <>
+      <h1>Cart</h1>
+      < Cart title="1.Anuj sharma" disc="Nandanpur"/>
+      < Cart title="2.Dheeraj sharma" disc="Nandanpur"/>
+      < Cart title="3.Manish sharma" disc="Nandanpur"/>
+        </>
+    }
+
+     // than create a virtual dom and render app component
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+
+    root.render(<App />);
+    
+  
+
+
+  </script>
+</html>

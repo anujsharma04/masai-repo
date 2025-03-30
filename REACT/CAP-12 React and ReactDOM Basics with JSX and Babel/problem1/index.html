@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container"></div>
+</body>
+
+</html>
+
+<!-- link react script file  -->
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<!-- Add one more file babel  -->
+
+<script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+
+<!-- if i am using babel type is text/babel -->
+
+<script type="text/babel">
+
+   // create one element variable and store p tag
+
+    const element = <p>Seize The Day</p>
+
+    // create react dom and get id container
+
+    const root = ReactDOM.createRoot(document.getElementById("container"));
+
+    // and react element render with react dom
+    root.render(element);
+
+
+</script>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greeting Component</title>
+  </head>
+  <style>
+    /* *{
+        grid-template-columns: ;
+    } */
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Your Greeting component code will go here
+
+    // create a components and receive a props childern and return children props
+
+        const Gallery = ({children}) => {
+            return <div >
+                    <h3 style={{color:"red" , border:"2px solid black" , widht:"100px", height:"100px"}}>{children}</h3>
+                </div>
+        }
+
+
+// create a components and call the props childern and return children props
+//and add some css using style
+
+        const App = () => {
+            return<div style={{display:"grid" ,gridGap:"50px ",gridTemplateColumns:"repeat(3 ,1fr)",width:"100%" , height:"100vh"}}>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+           < Gallery children="Children image"/>
+          
+            </div>
+        }
+
+
+         // than create a virtual dom and render app component
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+
+    root.render(<App />);
+    
+  
+
+
+  </script>
+</html>

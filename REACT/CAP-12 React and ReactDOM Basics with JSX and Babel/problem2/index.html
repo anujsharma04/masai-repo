@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+<!-- link react script file without link babel -->
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<!-- if i bable not used then i have no type change in script -->
+
+<script>
+    
+// I have done the work that babel does. 
+// like bable is a translator. babel translate code then react understood. blew code format
+
+    const element = React.createElement("p",{className : "pTag",
+        children : "Seize The Day",
+    });
+
+    const root = ReactDOM.createRoot(document.getElementById("container"));
+    root.render(element);
+
+</script>
