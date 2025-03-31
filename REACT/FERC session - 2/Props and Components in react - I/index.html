@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components in React</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // Write your code here
+
+        // add css 
+
+
+        const heading = {
+            textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
+            gap: "10px",
+            fontFamily: "Arial",
+            fontWeight: "900",
+               marginTop:"150px"
+          
+        }
+
+        const second_head = {
+
+            display: 'inline-block',
+            background: 'linear-gradient( transparent 70% ,#C6F6D5 30%)',
+            color:"#47BB78"
+            // padding: '5px'
+
+        }
+
+        const main_container = {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            height: "300px"
+
+
+        }
+
+
+
+
+        const datano = {
+            backgroundColor: "#C6F6D5",
+            width: "50px ",
+            height: "50px",
+            margin: "auto",
+            fontSize: "1.5rem",
+            color: "#337253",
+            borderRadius: "5px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontFamily: "Arial",
+            fontWeight: "700"
+
+        }
+
+        const data_heading = {
+            fontFamily: "Arial",
+            fontWeight: "700"
+         
+
+        }
+        const data_detail = {
+            fontFamily: "Arial",
+            fontWeight: "500",
+            color: "#718096",
+            wordSpacing: "4px"
+        }
+
+
+
+        const data = [
+            {
+                number: "01",
+                heading: "Find your templates",
+                detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta ad quas maiores ducimus! Quisquam, vel!"
+            },
+            {
+                number: "02",
+                heading: "Copy the code",
+                detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta ad quas maiores ducimus! Quisquam, vel!"
+            },
+            {
+                number: "03",
+                heading: "Enjoy your free time",
+                detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta ad quas maiores ducimus! Quisquam, vel!"
+            },
+        ]
+
+       
+
+        function Component() {
+            return (
+                <>
+                    <div style={main_container}>{data.map((data, index) => <div style={{ width: "25%" }} key={index}>
+                        <div style={datano}>{data.number}</div>
+                        <h1 style={data_heading}>{data.heading}</h1>
+                        <p style={data_detail}>{data.detail}</p>
+                    </div>)}
+                    </div>
+                </>
+            )
+        }
+
+        function Display() {
+            return (
+                <>
+                    <div>
+                        <div style={heading}>
+                            <h1 >Getting started in </h1>
+                            <h1 style={second_head}> 3 easy steps</h1>
+                        </div>
+
+                        <Component />
+                      
+
+                    </div>
+                </>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"))
+        root.render(<Display />)
+
+
+    </script>
+</body>
+
+</html>
