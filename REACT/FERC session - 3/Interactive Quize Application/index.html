@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QUIZE APPLICATION</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+
+    const data = [
+        {
+            Question: "Who is the CEO of Facebook ?",
+            OPtion: ["Mark Zuckerberg", "Elone Musk", "Steve Jobs", "Satya Nadella"],
+            answer: "Mark Zuckerberg"
+
+        },
+        {
+            Question: "Who is the CEO of Microsoft ?",
+            OPtion: ["Mark Zuckerberg.", "Elone Musk", "Steve Jobs", "Satya Nadella"],
+            answer: "Satya Nadella"
+
+        },
+        {
+            Question: "Who is the CEO of Tesla ?",
+            OPtion: ["Mark Zuckerberg.", "Elone Musk", "Steve Jobs", "Satya Nadella"],
+            answer: "Elone Musk"
+
+        },
+        {
+            Question: "Who is the CEO of Apple ?",
+            OPtion: ["Mark Zuckerberg.", "Elone Musk", "Steve Jobs", "Satya Nadella"],
+            answer: "Steve Jobs"
+
+        }
+
+    ]
+
+
+    const container = {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+
+
+    }
+
+    const Question = {
+        backgroundColor: "red",
+        color: "white",
+        borderRadius: "10px"
+    }
+
+    const option = {
+
+        marginLeft: "20px",
+
+
+    }
+    const btn_container = {
+        margin: "20px auto",
+        backgroundColor: "yellow",
+        width: "110px"
+
+    }
+
+    const btn_style = {
+        backgroundColor: "yellow"
+    }
+
+
+
+
+
+
+
+    function App() {
+
+        const [selectans, setselectans] = React.useState({})
+        const [score, setscore] = React.useState(null)
+        const [submited, setsubmited] = React.useState(false)
+
+
+        const getvalue = (ele, Qindex) => {
+            const value = ele.target.value;
+            setselectans(pre => ({ ...pre, [Qindex]: value }))
+        }
+
+        const show_score = () => {
+            let count = 0;
+
+            data.forEach((e, i) => {
+                if (e.answer === selectans[i]) {
+                    count++;
+
+
+                }
+            })
+            setscore(count)
+            setsubmited(true)
+
+
+        }
+
+
+
+        return (
+            <>  
+                <h1 style={{textAlign:"center"}}>QUIZE APPLICATION</h1>
+                <div style={container} id="m_container">{data.map((ele, Qindex) => <div key={Qindex}>
+                    <h1 style={Question}>{ele.Question}</h1>
+                    {ele.OPtion.map((element, oindex) => <label key={oindex} style={option}><input type="radio" name={ele.Question} value={element} onChange={(e) => getvalue(e, Qindex)} />{element}</label>)}
+                </div>)}</div>
+                <div style={btn_container} >
+                    <button style={btn_style} onClick={show_score}>SHOW SCORE</button>
+                </div>
+                {
+                    submited &&
+                    <h1 style={{ textAlign: "center", fontSize: "5rem" }} >{`Your Score IS ${score} Out Of ${data.length}`}</h1>
+                }
+            </>
+        )
+
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />)

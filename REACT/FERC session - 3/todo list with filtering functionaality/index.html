@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // Your  code will go here\
+
+
+    // all style property here 
+
+    const Addtask_style = {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "10px",
+        margin: "auto",
+        border: "2Px Solid Black",
+        padding: "20px",
+        width: "40%",
+        backgroundColor:"#5d53ff",
+        borderRadius:"10px"
+
+    }
+
+    const filter_style = {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        border:"1px solid black",
+        width:"40%",
+        margin:"10px auto",
+        padding:"10px",
+        backgroundColor:"#ff53ac",
+        borderRadius:"10px"
+    }
+    const table_section = {
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center"
+    }
+
+    const table_style = {
+        border: "1px solid black",
+        borderCollapse: "collapse",
+        marginTop: "10px",
+        backgroundColor:"#54d0ff"
+    }
+
+
+    const th_style = {
+
+        border: "1px solid black",
+        padding: "8px",
+        textAlign: "left",
+        backgroundColor:"#fff009",
+        fontWeight:"600",
+        fontFamily:"arial"
+    };
+    const td_style = {
+
+        border: "1px solid black",
+        padding: "8px",
+        textAlign: "left",
+        fontFamily:"arial",
+        fontWeight:"600",
+
+    };
+
+   
+
+
+    function App() {
+
+        // count the id of obj
+
+        let count = 0;
+
+        // usestate set input text 
+
+        const [text, settext] = React.useState("")
+
+        // usestate set option text
+        const [option, setoption] = React.useState("All")
+
+        // input and option are add in a object and object store in array
+
+        const [data, setdata] = React.useState([]);
+
+        // set filter is filter value store
+
+        const [fitr, setfiltr] = React.useState("Select");
+
+        // click submit button then if text is not empthy then store obj{id,name,option} in setdata then input value is empty
+
+        const submit = () => {
+            if (text !== "") {
+                setdata([
+                    ...data,
+                    { id: count++, "name": text, "option": option }
+                ]);
+
+                settext("")
+            }
+
+        }
+
+        // click remove then recive a index of obj then remove it using filter
+
+        const remove = (id) => {
+            setdata(data.filter((_, index) => index !== id))
+        }
+
+        // user should filter task based then use filter if filter equal to select then print option equal to filter
+
+        const fl = data.filter((ele => fitr === "Select" ? true : ele.option === fitr))
+
+
+        return (
+            <>
+                <section style={Addtask_style}>
+                    <h2>Add New Task</h2>
+                    <input id="textinput" type="text" placeholder="Enter Your Name" value={text} onChange={(e) => settext(e.target.value)} />
+                    <select name="" id="" onChange={(e) => setoption(e.target.value)}>
+                        <option value="All">All</option>
+                        <option value="Active">Active</option>
+                        <option value="Complete">Complete</option>
+                    </select>
+                    <button onClick={submit}>ADD TASK</button>
+                </section>
+
+                <section style={filter_style}>
+                    <h2>Task Based Status</h2>
+                    <select name="" id="" onChange={(e) => setfiltr(e.target.value)}>
+                        <option value="Select">Select</option>
+                        <option value="All">All</option>
+                        <option value="Active">Active</option>
+                        <option value="Complete">Complete</option>
+                    </select>
+
+                </section>
+
+                <section style={table_section}> 
+
+                    <table style={table_style}>
+                        <thead>
+                            <tr>
+                                <td style={th_style}>Username</td>
+                                <td style={th_style}>Task</td>
+                                <td style={th_style}>Remove</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {fl !== "" ? fl.map((ele, index) => <tr key={index}>
+                                <td style={td_style}>{ele.name}</td>
+                                <td style={td_style}>{ele.option}</td>
+                                <td style={td_style}><button onClick={() => remove(index)}>Remove</button></td>
+                            </tr>)
+
+                                : data.map((ele, index) => <tr key={index}>
+                                    <td style={td_style}>{ele.name}</td>
+                                    <td style={td_style}>{ele.option}</td>
+                                    <td style={td_style}><button onClick={() => remove(index)}>Remove</button></td>
+                                </tr>)}
+                        </tbody>
+                    </table>
+                </section>
+
+
+            </>
+        )
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />)
+</script>
+
+</html>

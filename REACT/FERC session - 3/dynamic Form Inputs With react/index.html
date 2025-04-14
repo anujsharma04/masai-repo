@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // Your  code will go here
+
+    const i = {
+
+        margin: "30px auto",
+        width: "50%",
+       
+        display: "flex",
+        justifyContent: "space-around"
+
+    }
+    const input_box = {
+        width: "80%",
+        height: "30px"
+    }
+    const input_btn = {
+        width: "18%"
+    }
+    const box = {
+        display: "flex",
+
+        justifyContent: "center",
+
+
+    }
+
+
+
+
+
+    function App() {
+        const [Hobby, sethobby] = React.useState("");
+        const [Data, setdata] = React.useState([]);
+
+
+
+        const btn = () => {
+            if (Hobby !== "") {
+
+                const obj = {
+                    "hobby": Hobby
+                }
+                setdata(pre => [...pre, obj])
+                const mt = document.getElementById("input")
+                mt.value = "";
+                sethobby("")
+
+            }
+            else{
+                alert("Please Enter Your Hobby")
+            }
+
+        }
+
+        const removebtn = (id) => {
+            const newList = Data.filter((_, index) => index !== id);
+            setdata(newList);
+
+        };
+
+
+
+
+        return (
+            <>
+
+                <div style={i}>
+                    <input style={input_box} id="input" type="text" placeholder="HOBBY" onChange={(e) => sethobby(e.target.value)}  />
+                    <button style={input_btn} onClick={btn}>SUBMIT</button>
+                </div>
+
+                <div style={box}>
+
+                    <table border="1">
+                        <thead >
+                            <tr >
+                                <th>HOBBY</th>
+                                <th>DELETE</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                Data.map((data, index) => <tr key={index}>
+                                    <td style={{backgroundColor:"yellow"}}>{data.hobby}</td>
+                                    <td><button style={{backgroundColor:"red"}} onClick={()  => removebtn(index)}>REMOVE</button></td>
+                                </tr>)
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </>
+
+
+        )
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />)
+
+
+
+</script>
+
+</html>
