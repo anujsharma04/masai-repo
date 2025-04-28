@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template</title>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  // Your  code will go here
+
+  const { useState } = React;
+
+  const userProfiles = [
+    { id: 1, name: "Emma Johnson", email: "emma.johnson@example.com", username: "emma_j", age: 28, location: "New York, NY" },
+    { id: 2, name: "Liam Smith", email: "liam.smith@example.com", username: "liam_s", age: 34, location: "Los Angeles, CA" },
+    { id: 3, name: "Olivia Brown", email: "olivia.brown@example.com", username: "olivia_b", age: 25, location: "Chicago, IL" },
+    { id: 4, name: "Noah Davis", email: "noah.davis@example.com", username: "noah_d", age: 30, location: "Houston, TX" },
+    { id: 5, name: "Ava Wilson", email: "ava.wilson@example.com", username: "ava_w", age: 27, location: "Phoenix, AZ" },
+    { id: 6, name: "William Taylor", email: "william.taylor@example.com", username: "will_t", age: 40, location: "San Francisco, CA" },
+    { id: 7, name: "Sophia Martinez", email: "sophia.martinez@example.com", username: "sophia_m", age: 22, location: "Miami, FL" },
+    { id: 8, name: "James Anderson", email: "james.anderson@example.com", username: "james_a", age: 35, location: "Seattle, WA" },
+    { id: 9, name: "Isabella Thomas", email: "isabella.thomas@example.com", username: "isabella_t", age: 29, location: "Boston, MA" },
+    { id: 10, name: "Alexander Lee", email: "alexander.lee@example.com", username: "alex_l", age: 31, location: "Denver, CO" },
+    { id: 11, name: "Charlotte White", email: "charlotte.white@example.com", username: "charlotte_w", age: 26, location: "Austin, TX" },
+    { id: 12, name: "Benjamin Harris", email: "benjamin.harris@example.com", username: "ben_h", age: 33, location: "Portland, OR" },
+    { id: 13, name: "Mia Clark", email: "mia.clark@example.com", username: "mia_c", age: 24, location: "Atlanta, GA" },
+    { id: 14, name: "Elijah Lewis", email: "elijah.lewis@example.com", username: "elijah_l", age: 38, location: "Dallas, TX" },
+    { id: 15, name: "Amelia Walker", email: "amelia.walker@example.com", username: "amelia_w", age: 27, location: "San Diego, CA" },
+    { id: 16, name: "Lucas Young", email: "lucas.young@example.com", username: "lucas_y", age: 29, location: "Philadelphia, PA" },
+    { id: 17, name: "Harper Allen", email: "harper.allen@example.com", username: "harper_a", age: 23, location: "San Antonio, TX" },
+    { id: 18, name: "Mason King", email: "mason.king@example.com", username: "mason_k", age: 36, location: "Las Vegas, NV" },
+    { id: 19, name: "Evelyn Scott", email: "evelyn.scott@example.com", username: "evelyn_s", age: 30, location: "Charlotte, NC" },
+    { id: 20, name: "Logan Green", email: "logan.green@example.com", username: "logan_g", age: 32, location: "Columbus, OH" },
+    { id: 21, name: "Aria Adams", email: "aria.adams@example.com", username: "aria_a", age: 25, location: "Indianapolis, IN" },
+    { id: 22, name: "Jackson Baker", email: "jackson.baker@example.com", username: "jackson_b", age: 39, location: "San Jose, CA" },
+    { id: 23, name: "Scarlett Gonzalez", email: "scarlett.gonzalez@example.com", username: "scarlett_g", age: 28, location: "Jacksonville, FL" },
+    { id: 24, name: "Aiden Rodriguez", email: "aiden.rodriguez@example.com", username: "aiden_r", age: 34, location: "San Francisco, CA" },
+    { id: 25, name: "Chloe Perez", email: "chloe.perez@example.com", username: "chloe_p", age: 26, location: "Memphis, TN" },
+    { id: 26, name: "Daniel Turner", email: "daniel.turner@example.com", username: "daniel_t", age: 37, location: "Baltimore, MD" },
+    { id: 27, name: "Victoria Phillips", email: "victoria.phillips@example.com", username: "victoria_p", age: 24, location: "Milwaukee, WI" },
+    { id: 28, name: "Henry Campbell", email: "henry.campbell@example.com", username: "henry_c", age: 31, location: "Albuquerque, NM" },
+    { id: 29, name: "Luna Parker", email: "luna.parker@example.com", username: "luna_p", age: 29, location: "Tucson, AZ" },
+    { id: 30, name: "Gabriel Evans", email: "gabriel.evans@example.com", username: "gabriel_e", age: 35, location: "Fresno, CA" },
+    { id: 31, name: "Penelope Morris", email: "penelope.morris@example.com", username: "penelope_m", age: 27, location: "Sacramento, CA" },
+    { id: 32, name: "Owen Rivera", email: "owen.rivera@example.com", username: "owen_r", age: 33, location: "Kansas City, MO" },
+    { id: 33, name: "Layla Rogers", email: "layla.rogers@example.com", username: "layla_r", age: 25, location: "Long Beach, CA" },
+    { id: 34, name: "Ethan Cook", email: "ethan.cook@example.com", username: "ethan_c", age: 40, location: "Mesa, AZ" },
+    { id: 35, name: "Zoey Hughes", email: "zoey.hughes@example.com", username: "zoey_h", age: 23, location: "Virginia Beach, VA" },
+    { id: 36, name: "Caleb Price", email: "caleb.price@example.com", username: "caleb_p", age: 38, location: "Oakland, CA" },
+    { id: 37, name: "Nora Bell", email: "nora.bell@example.com", username: "nora_b", age: 26, location: "Tulsa, OK" },
+    { id: 38, name: "Isaac Hayes", email: "isaac.hayes@example.com", username: "isaac_h", age: 32, location: "Cleveland, OH" },
+    { id: 39, name: "Hannah Foster", email: "hannah.foster@example.com", username: "hannah_f", age: 29, location: "Raleigh, NC" },
+    { id: 40, name: "Levi Cox", email: "levi.cox@example.com", username: "levi_c", age: 34, location: "Omaha, NE" },
+    { id: 41, name: "Ellie Barnes", email: "ellie.barnes@example.com", username: "ellie_b", age: 27, location: "Minneapolis, MN" },
+    { id: 42, name: "Julian Fisher", email: "julian.fisher@example.com", username: "julian_f", age: 36, location: "Arlington, TX" },
+    { id: 43, name: "Aurora Ford", email: "aurora.ford@example.com", username: "aurora_f", age: 24, location: "Wichita, KS" },
+    { id: 44, name: "Dylan Graham", email: "dylan.graham@example.com", username: "dylan_g", age: 31, location: "St. Louis, MO" },
+    { id: 45, name: "Hazel Coleman", email: "hazel.coleman@example.com", username: "hazel_c", age: 28, location: "Pittsburgh, PA" },
+    { id: 46, name: "Eli Weaver", email: "eli.weaver@example.com", username: "eli_w", age: 39, location: "Anchorage, AK" },
+    { id: 47, name: "Violet Stone", email: "violet.stone@example.com", username: "violet_s", age: 25, location: "Bakersfield, CA" },
+    { id: 48, name: "Asher Hunt", email: "asher.hunt@example.com", username: "asher_h", age: 33, location: "Corpus Christi, TX" },
+    { id: 49, name: "Sofia Wells", email: "sofia.wells@example.com", username: "sofia_w", age: 26, location: "Boise, ID" },
+    { id: 50, name: "Grayson Fox", email: "grayson.fox@example.com", username: "grayson_f", age: 37, location: "Salt Lake City, UT" }
+  ];
+
+
+
+  function App() {
+    const [data, setdata] = useState(userProfiles);
+    const [text, settext] = useState("");
+
+    
+    let filter = data.filter((current) => current.name.toLowerCase().includes(text))
+
+    return (
+      <>
+        <section style={style.section}>
+          <div style={style.input_div}>
+            <h1>Search With UserProfiles</h1>
+            <input type="text" style={style.input} placeholder="Search Of UserProfiles " onChange={(e) => settext(e.target.value)} />
+          </div>
+          <div>{filter.map((ele, index) => <div style={style.cards} key={index}>
+            <h1>{ele.name}</h1>
+            <p style={style.p}>Username: {ele.username}</p>
+            <p style={style.p}>Email: {ele.email}</p>
+            <p style={style.p}>Age: {ele.age}</p>
+            <p style={style.p}>Location: {ele.location}</p>
+          </div>)}</div>
+        </section>
+      </>
+    )
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />)
+
+
+  // inline style css
+
+  const style = {
+      section:{
+        width:"50%",
+        margin:"auto",
+        backgroundColor:"#f5f5f5",
+        boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px"
+
+
+      },
+      input_div:{
+        height:"150px",
+        width:"100%",
+        backgroundColor:"aqua",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center"
+      },
+      input:{
+          height:"20px",
+          width:"60%",
+          padding:"10px"
+      },
+
+      cards:{
+          textAlign:"center",
+          padding:"30px",
+          margin:"40px 30px",
+          borderRadius:"10px",
+          backgroundColor:"#5f99ff",
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
+      },
+      p:{
+        fontWeight:"600"
+      }
+
+  }
+
+
+</script>
+
+</html>
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // Your  code will go here
+
+
+    function Display({ gretting, name }) {
+
+        return (
+            <>
+            <div  style={{display:"flex",justifyContent:"center", flexDirection:"row", backgroundColor:"yellow"}}>
+                <div style={{ height: "150px", width: "150px", backgroundColor: "red", textAlign: "center", margin:"10px", color: "white" }}>
+                    <h1>{gretting}</h1>
+                    <h2>{name}</h2>
+                </div>
+            </div>
+            </>
+        )
+    }
+
+
+    function App() {
+
+        const [obj, setobj] = React.useState([
+            {
+                "gretting": "Happy Birthday",
+                "Name": "Anuj Sharma"
+            },
+            {
+                "gretting": "Happy Birthday",
+                "Name": "Anuj Sharma"
+            },
+            {
+                "gretting": "Happy Birthday",
+                "Name": "Anuj Sharma"
+            },
+            {
+                "gretting": "Happy Birthday",
+                "Name": "Anuj Sharma"
+            },
+            {
+                "gretting": "Happy Birthday",
+                "Name": "Anuj Sharma"
+            },
+            {
+                "gretting": "Happy Birthday",
+                "Name": "Anuj Sharma"
+            },
+        ])
+
+
+
+
+        console.log(obj.map((ele) => ele))
+        return (
+            <>
+                <div>{obj.map((ele, index) => <div><Display key={index} gretting={ele.gretting} name={ele.Name} /></div>)}
+                </div>
+            </>
+        )
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />)
+
+</script>
+
+</html

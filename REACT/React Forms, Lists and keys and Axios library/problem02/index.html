@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // Your  code will go here
+
+
+
+    const { useState } = React;
+
+    function App() {
+
+        // let count = 0;
+        const [input, setinput] = useState("")
+        const [data, setdata] = useState([])
+        const [T, settrue] = useState(false)
+        const [count, setcount] = useState(0)
+
+
+
+        const add_task = () => {
+            if (input !== "") {
+
+                setdata([...data, { id: count, "task": input, completed: false }]);
+                document.getElementById("task_input").value = "";
+                setinput("")
+                setcount(count + 1)
+            }
+
+        }
+
+
+       
+
+        const check_box = (id) => {
+            setdata(data.map((element) => element.id === id ? { ...element, completed: !element.completed } : element))
+
+        }
+
+
+
+
+        return (
+            <>
+                <section style={style.section}>
+                    <h1 style={style.heading}>ToDo List</h1>
+                    <div style={style.input_todo}>
+                        <input style={style.input_text} type="text" placeholder="ADD TASK" id="task_input" onChange={(e) => (setinput(e.target.value))} />
+                        <button style={style.add_btn} onClick={add_task}>ADD</button>
+                    </div>
+
+
+                    <div style={style.table}>
+
+                        {
+                            data.map((ele, index) => <ul style={style.tr} key={index}>
+                                <li><input type="checkbox" checked={ele.completed} onChange={() => check_box(ele.id)} /></li>
+                                <li style={{
+                                    ...style.todo_text,
+                                    textDecoration: ele.completed ? 'line-through' : 'none', color: ele.completed ? '#6d6d6d' : 'black'
+                                }}>{ele.task}</li>
+                                <li><button onClick={() => {
+                                    setdata(
+                                        data.filter(a =>
+                                            a.id !== ele.id
+                                        ))
+                                }
+                                }> ❌</button></li>
+                            </ul>
+                            )}
+                    
+                    </div>
+                </section>
+            </>
+        )
+
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />)
+
+
+
+    //inline css style 
+    const style = {
+        section: {
+            width: "50%",
+            border: "2px solid black",
+            backgroundColor:"#f3f3f3",
+            margin:"auto"
+        },
+        heading: {
+            textAlign: "center"
+        },
+        input_todo: {
+            display: "flex",
+            justifyContent:"center"
+
+        },
+        input_text: {
+            width: "65%",
+            padding:"8px",
+            borderRadius:"10px",
+            border: "1px solid"
+            
+        },
+        add_btn: {
+            width: "15%",
+            backgroundColor: "#60ff36",
+            border: "1px solid",
+            borderRadius:"10px"
+
+        },
+        table: {
+            width: "100%",
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"center",
+            alignItems:"center",
+            padding:"10px"
+            
+        },
+        tr: {
+            width: "80%",
+            backgroundColor: "#d8d8d8",
+            padding: "10px",
+            listStyleType:"none",
+            display:"flex",
+            borderRadius:"10px"
+            
+            
+            
+
+        },
+        todo_text: {
+            width: "80%",
+            fontSize:"1rem"
+        }
+
+
+
+    }
+
+
+</script>
+
+</html>
