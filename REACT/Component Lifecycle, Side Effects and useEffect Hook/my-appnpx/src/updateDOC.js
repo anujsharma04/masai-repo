@@ -12,6 +12,6 @@ export default function Docupdater() {
 
     return (<>
         
-            <button onClick={()=>setcount(pre => pre + 1)}>Click{count}</button> 
+            <button onClick={()=>setcount(pre => pre + 1)}>Click{count}</button>                         
     </>)
 }
