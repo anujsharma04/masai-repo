@@ -10,23 +10,3 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-
-
-# 🚀 my-react-app (Vite + React)
-
-## 📚 Project Overview
-
-This project is a simple **Counter App** created with **React and Vite**. It demonstrates:
-- Setting up a Vite-based React project
-- Using `useState` for state management
-- Proper React component structure
-
----
-
-## 🛠️ Setup Instructions
-
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/my-react-app.git
-cd my-react-app
