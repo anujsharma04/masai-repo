@@ -1,54 +1,95 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
+import './App.css'
 
-export default function App() {
-  const inputRef1 = useRef(null);
-  const inputRef2 = useRef(null);
-  const inputRef3 = useRef(null);
-  const inputRef4 = useRef(null);
+function App() {
+  const inputref1 = useRef(null);
+  const inputref2 = useRef(null);
+  const inputref3 = useRef(null);
+  const inputref4 = useRef(null);
+  const inputref5 = useRef(null);
+  const inputref6 = useRef(null);
+  const sbtn = useRef();
 
-  // Array of refs for easier management
-  const refs = [inputRef1, inputRef2, inputRef3, inputRef4];
+  // create array and all inputref are store in array
 
-  // Focus the first input on mount
+  const arr = [
+    inputref1,
+    inputref2,
+    inputref3,
+    inputref4,
+    inputref5,
+    inputref6,
+  ];
+
+  // add useEffect with Empthy dependency 
+
   useEffect(() => {
-    inputRef1.current.focus();
+    inputref1.current.focus(); // render frist time inputref1 is focus
+        sbtn.current.disabled = true; // and submit button is desibale frist time mount component
   }, []);
 
-  // Handle input change and move focus to the next input
-  const handleChange = (index) => (e) => {
-    const value = e.target.value;
-    // Optional: Restrict to digits only
-    if (value && !/^[0-9]$/.test(value)) {
+  const handlechange = (index) => (e) => { // add handlechange function when input value is change when render every time
+    const valu = e.target.value; // store input value 
+
+    if (valu && !/^[0-9]$/.test(valu)) {   // if value is not number between 0-9 then return input value is Empthy
       e.target.value = "";
       return;
     }
-    // Move to next input if a value is entered and not the last input
-    if (value && index < refs.length - 1) {
-      refs[index + 1].current.focus();
+    if (valu && index < arr.length - 1) {  // if value is avalable and length of arr less than index then focus next input box
+      arr[index + 1].current.focus();
+    }
+    if ( //  if all input box are empty then submit button is disable
+      inputref6.current.value === "" ||
+      inputref1.current.value === "" ||
+      inputref2.current.value === "" ||
+      inputref3.current.value === "" ||
+      inputref4.current.value === "" ||
+      inputref5.current.value === ""
+    ) {
+      sbtn.current.disabled = true;
+    }
+    if ( // if all input box are not enpty then submit button is enable
+      inputref6.current.value != "" &&
+      inputref1.current.value != "" &&
+      inputref2.current.value != "" &&
+      inputref3.current.value != "" &&
+      inputref4.current.value != "" &&
+      inputref5.current.value != ""
+    ) {
+      sbtn.current.disabled = false;
     }
   };
 
-  // Handle Backspace to move focus to the previous input
-  const handleKeyDown = (index) => (e) => {
-    if (e.key === "Backspace" && !e.target.value && index > 0) {
-      refs[index - 1].current.focus();
+  const handlekeydown = (index) => (e) => {  //add onkeydown when click backspace button then focus previous input box
+    if (e.key == "Backspace" && !e.target.value && index > 0) {
+      arr[index - 1].current.focus();
     }
   };
 
   return (
-    <> 
-    <h1>OTP Fill</h1>
-      {refs.map((ref, index) => (
-        <input
-          key={index}
-          ref={ref}
-          type="password"
-          maxLength={1}
-          onChange={handleChange(index)}
-          onKeyDown={handleKeyDown(index)}
-          style={{ width: "2rem", margin: "0 0.5rem", textAlign: "center" }}
-        />
-      ))}
+    <>
+      <div id="main_container">
+        <h1>OTP FILLER</h1>
+        <div id="container">
+          {arr.map((refs, index) => (
+            <input
+              className="input_box"
+              key={index}
+              ref={refs}
+              type="text"
+              placeholder="*"
+              maxLength={1}
+              onChange={handlechange(index)}
+              onKeyDown={handlekeydown(index)}
+            />
+          ))}
+        </div>
+        <div id="btn">
+          <button ref={sbtn}>Submit OTP</button>
+        </div>
+      </div>
     </>
   );
 }
+
+export default App;
