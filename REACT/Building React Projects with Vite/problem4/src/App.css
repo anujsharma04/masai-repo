@@ -1,0 +1,37 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#outer {
+  border-radius: 10px;
+  padding: 1px;
+}
+
+#inner {
+  border-radius: 10px;
+}
+#container {
+  width: 50%;
+  border-radius: 15px;
+  padding: 50px;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#input_box {
+  margin: 20px;
+}
+#input_box > input {
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  text-align: center;
+
+  /* padding-left: 13px; */
+  border: 1px solid gray;
+}
+#input_box > input:focus {
+  outline: none;
+}
