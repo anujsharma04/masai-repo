@@ -1,0 +1,8 @@
+.navbar_container{
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border: 2px solid;
+  background-color: rgb(209, 209, 209);
+
+}
