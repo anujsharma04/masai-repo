@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const { useState } = React;
+      function App() {
+        const [input, setinput] = useState("");
+
+        const [task, settask] = useState([]);
+
+        const addtask = () => {
+          if (input !== "") {
+            const newtask = {
+              id: Date.now(),
+              task: input,
+              complete: true,
+            };
+            settask((pre) => [...pre, newtask]);
+            setinput("");
+          }
+        };
+
+        console.log(task);
+
+        const triger = (id) => {
+          const updatedTasks = task.map((ele) =>
+            ele.id === id ? { ...ele, complete: !ele.complete } : ele
+          );
+          settask(updatedTasks);
+        };
+
+        return (
+          <>
+            <div>
+              <h1>Todo Application</h1>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Add taks"
+                  value={input}
+                  onChange={(e) => setinput(e.target.value)}
+                />
+                <button onClick={() => addtask()}>Add Task</button>
+              </div>
+              <div>
+                <ul>
+                  {task.map((ele, index) => (
+                    <li
+                      onClick={() => triger(ele.id)}
+                      key={index}
+                      style={{
+                        cursor: "pointer",
+                        textDecoration:
+                          ele.complete === false ? "line-through" : "none",
+                      }}
+                    >
+                      {ele.task}
+                      <button>Delete</button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>

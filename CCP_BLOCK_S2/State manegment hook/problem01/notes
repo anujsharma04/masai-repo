@@ -1,0 +1,13 @@
+All three bugs were fixed by:
+
+1 Validating and sanitizing task input
+
+----fix task button sometimes adds empty task
+
+2 Adding clear visual feedback for completed tasks
+
+-----completed task are not visual then fix it if completed task then line throw 
+
+3 Using unique IDs to manage task updates and deletions
+
+add unique id if i delete any todo than can delete todo with selected id
