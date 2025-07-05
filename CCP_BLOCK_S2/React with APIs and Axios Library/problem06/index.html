@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React and Babel CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- React Code -->
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      const BASE_URL = "https://todolist-71d26-default-rtdb.firebaseio.com/users"; // ✅ FIXED
+
+      function App() {
+        const [users, setUsers] = useState([]);
+        const [form, setForm] = useState({ name: "", email: "" });
+        const [editId, setEditId] = useState(null);
+        const [errors, setErrors] = useState({});
+
+        useEffect(() => {
+          fetchUsers();
+        }, []);
+
+        const fetchUsers = () => {
+          axios
+            .get(`${BASE_URL}.json`)
+            .then((res) => {
+              const data = res.data;
+              const formatted = data
+                ? Object.keys(data).map((id) => ({ id, ...data[id] }))
+                : [];
+              setUsers(formatted);
+            })
+            .catch((err) => console.error("Fetch error:", err));
+        };
+
+        const validate = () => {
+          const errs = {};
+          if (!form.name.trim()) errs.name = "Name is required.";
+          if (!form.email.trim()) {
+            errs.email = "Email is required.";
+          } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+            errs.email = "Invalid email format.";
+          }
+          setErrors(errs);
+          return Object.keys(errs).length === 0;
+        };
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          if (!validate()) return;
+
+          if (editId) {
+            // PATCH update
+            axios
+              .patch(`${BASE_URL}/${editId}.json`, form)
+              .then(() => {
+                setEditId(null);
+                setForm({ name: "", email: "" });
+                fetchUsers();
+              })
+              .catch((err) => console.error("Update error:", err));
+          } else {
+            // POST new user
+            axios
+              .post(`${BASE_URL}.json`, form)
+              .then(() => {
+                setForm({ name: "", email: "" });
+                fetchUsers();
+              })
+              .catch((err) => console.error("Add error:", err));
+          }
+        };
+
+        const handleEdit = (user) => {
+          setForm({ name: user.name, email: user.email });
+          setEditId(user.id);
+        };
+
+        const handleDelete = (id) => {
+          axios
+            .delete(`${BASE_URL}/${id}.json`)
+            .then(() => fetchUsers())
+            .catch((err) => console.error("Delete error:", err));
+        };
+
+        return (
+          <div style={{ padding: "20px", maxWidth: "500px", margin: "auto" }}>
+            <h2>{editId ? "Edit User" : "Add User"}</h2>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                style={{ display: "block", marginBottom: "10px", width: "100%", padding: "8px" }}
+              />
+              {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+
+              <input
+                type="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                style={{ display: "block", marginBottom: "10px", width: "100%", padding: "8px" }}
+              />
+              {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+
+              <button type="submit" style={{ padding: "10px 20px" }}>
+                {editId ? "Update" : "Add"}
+              </button>
+            </form>
+
+            <h3 style={{ marginTop: "30px" }}>User List</h3>
+            {users.length === 0 ? (
+              <p>No users found.</p>
+            ) : (
+              <ul>
+                {users.map((user) => (
+                  <li key={user.id} style={{ marginBottom: "10px" }}>
+                    <strong>{user.name}</strong> - {user.email}
+                    <button
+                      onClick={() => handleEdit(user)}
+                      style={{ marginLeft: "10px" }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(user.id)}
+                      style={{ marginLeft: "5px", color: "red" }}
+                    >
+                      Delete
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
