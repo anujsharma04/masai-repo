@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controlled Form Basics</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const { useRef } = React;
+      function App() {
+        const inputRef = useRef(null);
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          const value = inputRef.current.value;
+
+          if (value.trim() === "") {
+            alert("Please enter something");
+            return;
+          }
+
+          alert(`Entered Text: ${value}`);
+          inputRef.current.value = ""; // Clear input
+        };
+
+        return (
+          <form
+            onSubmit={handleSubmit}
+            style={{ maxWidth: "300px", margin: "20px auto" }}
+          >
+            <input
+              type="text"
+              ref={inputRef}
+              placeholder="Enter text"
+              style={{
+                padding: "8px",
+                fontSize: "16px",
+                width: "100%",
+                marginBottom: "10px",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+              }}
+            />
+            <button
+              type="submit"
+              style={{
+                padding: "8px 16px",
+                fontSize: "16px",
+                backgroundColor: "#28a745",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              Submit
+            </button>
+          </form>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
