@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const { useState } = React;
+      function App() {
+        const [obj, setobj] = useState([
+          { id: 1, name: "Anuj", present: true },
+          { id: 2, name: "Priya", present: false },
+          { id: 3, name: "Ravi", present: true },
+          { id: 4, name: "Simran", present: false },
+          { id: 5, name: "Amit", present: true },
+        ]);
+        const [filteredata, setfilterdata] = useState("");
+
+        const toaggleatendence = (id) => {
+          const updateatendence = obj.map((items) =>
+            items.id === id ? { ...items, present: !items.present } : items
+          );
+
+          setobj(updateatendence);
+        };
+
+        const studentfilter =
+          filteredata === ""
+            ? obj
+            : obj.filter((item) => item.present === (filteredata === "true"));
+
+        console.log(studentfilter);
+
+        // style ------------------
+        const styles = {
+          container: {
+            maxWidth: "500px",
+            margin: "30px auto",
+            padding: "20px",
+            backgroundColor: "#f9f9f9",
+            borderRadius: "10px",
+            fontFamily: "Arial, sans-serif",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+          },
+          filterBox: {
+            marginBottom: "20px",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+          },
+          label: {
+            fontSize: "16px",
+            fontWeight: "bold",
+          },
+          select: {
+            padding: "6px 12px",
+            fontSize: "14px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          },
+          list: {
+            listStyleType: "none",
+            padding: 0,
+            margin: 0,
+          },
+          listItem: {
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            backgroundColor: "#fff",
+            padding: "12px",
+            borderRadius: "6px",
+            marginBottom: "10px",
+            boxShadow: "0 1px 4px rgba(0,0,0,0.1)",
+          },
+          name: {
+            flex: 1,
+            fontSize: "16px",
+            fontWeight: "500",
+          },
+          status: {
+            marginRight: "15px",
+            fontWeight: "bold",
+          },
+          button: {
+            padding: "6px 12px",
+            backgroundColor: "#007bff",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          },
+        };
+
+        return (
+          <>
+            <div style={styles.container}>
+                <h1>Attendence Manager</h1>
+              <div style={styles.filterBox}>
+                <label style={styles.label}>Filter: </label>
+                <select
+                  onChange={(e) => setfilterdata(e.target.value)}
+                  style={styles.select}
+                >
+                  <option value="">All</option>
+                  <option value="true">Present</option>
+                  <option value="false">Absent</option>
+                </select>
+              </div>
+
+              <ul style={styles.list}>
+                {studentfilter.map((ele) => (
+                  <li key={ele.id} style={styles.listItem}>
+                    <span style={styles.name}>{ele.name}</span>
+                    <span
+                      style={{
+                        ...styles.status,
+                        color: ele.present ? "green" : "red",
+                      }}
+                    >
+                      {ele.present ? "Present" : "Absent"}
+                    </span>
+                    <button
+                      onClick={() => toaggleatendence(ele.id)}
+                      style={styles.button}
+                    >
+                      Toggle
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
