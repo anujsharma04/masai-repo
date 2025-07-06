@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Stopwatch</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React + Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- React App -->
+    <script type="text/babel">
+      const { useState, useEffect, useRef } = React;
+
+      function Stopwatch() {
+        const [seconds, setSeconds] = useState(0);
+        const [running, setRunning] = useState(false);
+        const [targetTime, setTargetTime] = useState(10);
+        const intervalRef = useRef(null);
+
+        const audioRef = useRef(
+          new Audio("https://www.soundjay.com/buttons/sounds/beep-07.mp3")
+        );
+
+        // Start the stopwatch
+        const handleStart = () => {
+          if (!running) {
+            setRunning(true);
+          }
+        };
+
+        // Stop the stopwatch
+        const handleStop = () => {
+          setRunning(false);
+        };
+
+        // Reset stopwatch
+        const handleReset = () => {
+          setSeconds(0);
+          setRunning(false);
+        };
+
+        // Handle custom target time input
+        const handleTargetChange = (e) => {
+          const value = parseInt(e.target.value, 10);
+          if (!isNaN(value)) {
+            setTargetTime(value);
+          }
+        };
+
+        // useEffect to manage timer
+        useEffect(() => {
+          if (running) {
+            intervalRef.current = setInterval(() => {
+              setSeconds((prev) => prev + 1);
+            }, 1000);
+          }
+
+          // Cleanup on stop or unmount
+          return () => clearInterval(intervalRef.current);
+        }, [running]);
+
+        // useEffect to detect when target is reached
+        useEffect(() => {
+          if (seconds === targetTime && running) {
+            // Play sound
+            try {
+              audioRef.current.play();
+            } catch {
+              console.log("🔔 Time reached!");
+            }
+            setRunning(false); // Stop after reaching target
+          }
+        }, [seconds, targetTime, running]);
+
+        return (
+          <div style={{ padding: "30px", fontFamily: "sans-serif", textAlign: "center" }}>
+            <h1>⏱️ Stopwatch</h1>
+            <h2 style={{ fontSize: "48px" }}>{seconds} sec</h2>
+
+            <div style={{ marginBottom: "15px" }}>
+              <label>
+                🎯 Target Time (sec):{" "}
+                <input
+                  type="number"
+                  value={targetTime}
+                  onChange={handleTargetChange}
+                  style={{ width: "60px", padding: "4px" }}
+                />
+              </label>
+            </div>
+
+            <div>
+              <button onClick={handleStart} style={{ marginRight: "10px" }}>▶️ Start</button>
+              <button onClick={handleStop} style={{ marginRight: "10px" }}>⏸️ Stop</button>
+              <button onClick={handleReset}>🔄 Reset</button>
+            </div>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<Stopwatch />);
+    </script>
+  </body>
+</html>
