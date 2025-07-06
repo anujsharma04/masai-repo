@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+        const {useState, useEffect} = React;
+
+       function ThemedBox({ theme, children }) {
+  const styles = {
+    padding: '20px',
+    margin: '10px',
+    borderRadius: '8px',
+    textAlign: 'center',
+    transition: 'all 0.3s ease',
+    backgroundColor: theme === 'light' ? '#f0f0f0' : '#333',
+    color: theme === 'light' ? '#000' : '#fff',
+    border: theme === 'light' ? '1px solid #ccc' : '1px solid #555',
+  };
+
+  return <div style={styles}>{children}</div>;
+}
+
+// Main App
+function ThemeApp() {
+  const [theme, setTheme] = useState('light');
+
+  // Load saved theme on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) setTheme(savedTheme);
+  }, []);
+
+  // Save theme to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  // Toggle between light and dark
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
+
+  const appStyle = {
+    minHeight: '100vh',
+    padding: '30px',
+    backgroundColor: theme === 'light' ? '#ffffff' : '#121212',
+    transition: 'background 0.3s ease',
+  };
+
+  return (
+    <div style={appStyle}>
+      <h1 style={{ color: theme === 'light' ? '#000' : '#fff' }}>Theme Toggle App</h1>
+      <button onClick={toggleTheme}>
+        Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+      </button>
+
+      <ThemedBox theme={theme}>Box 1 - Themed</ThemedBox>
+      <ThemedBox theme={theme}>Box 2 - Themed</ThemedBox>
+      <ThemedBox theme={theme}>Box 3 - Themed</ThemedBox>
+    </div>
+  );
+}
+
+// Mount to DOM
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<ThemeApp />);
+    </script>
+  </body>
+</html>
