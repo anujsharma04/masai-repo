@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Props Drilling Example</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React & Babel via CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Your React App -->
+    <script type="text/babel">
+      const { useState } = React;
+
+      // BottomMainRight Component
+      function BottomMainRight({ userName }) {
+        return (
+          <div style={{ background: "#f0f0f0", padding: "15px", marginTop: "10px" }}>
+            <h4>BottomMainRight Component</h4>
+            <p>
+              👋 Hello, <strong>{userName || "Stranger"}</strong>!
+            </p>
+          </div>
+        );
+      }
+
+      // BottomMain Component
+      function BottomMain({ userName }) {
+        return (
+          <div style={{ border: "1px dashed #aaa", padding: "15px", marginTop: "10px" }}>
+            <h3>BottomMain Component</h3>
+            <BottomMainRight userName={userName} />
+          </div>
+        );
+      }
+
+      // Main Component
+      function Main({ userName }) {
+        return (
+          <div style={{ border: "1px solid #ccc", padding: "15px", marginTop: "10px" }}>
+            <h2>Main Component</h2>
+            <BottomMain userName={userName} />
+          </div>
+        );
+      }
+
+      // App Component
+      function App() {
+        const [userName, setUserName] = useState("");
+
+        return (
+          <div style={{ padding: "20px", fontFamily: "Arial" }}>
+            <h1>Props Drilling Demo</h1>
+            <input
+              type="text"
+              placeholder="Enter your name"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              style={{ padding: "10px", width: "300px", marginBottom: "20px" }}
+            />
+            <Main userName={userName} />
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
