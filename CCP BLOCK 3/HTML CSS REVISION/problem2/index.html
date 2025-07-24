@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Building a Contact Form</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        margin: auto;
+        border: 2px solid;
+        padding: 30px;
+        background-color: rgb(211, 163, 255);
+        border-radius: 10px;
+        line-height: 30px;
+      }
+      h1{
+        text-align: center;
+ 
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contact Form</h1>
+    <form action="">
+      <label for="username">UserName:</label>
+      <input type="text" placeholder="UserName" />
+
+      <label for="email">Email:</label>
+      <input type="email" placeholder="Email" />
+
+      <label for="gender">Select Gender:</label>
+      <select name="" id="">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="massage">Write Massage:</label>
+      <textarea name="" id="" placeholder="Write Massage"></textarea>
+
+      <input type="submit" placeholder="Submit" />
+    </form>
+  </body>
+</html>
