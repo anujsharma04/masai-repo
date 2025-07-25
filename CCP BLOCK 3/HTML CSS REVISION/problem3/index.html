@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .gallery {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    section {
+      text-align: center;
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 300px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #007BFF;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mini Image Gallery</h1>
+
+  <div class="gallery">
+
+  <section>
+  <img src="https://a-z-animals.com/media/2021/12/bald-eagle-header.jpg" alt="Bald Eagle with sharp eyes">
+  <a href="https://en.wikipedia.org/wiki/Bald_eagle" target="_blank">Learn more about Bald Eagles</a>
+</section>
+
+<section>
+  <img src="https://cdn.britannica.com/37/154237-050-A76A506D/blue-peafowl-tail-Indian-peacock-courtship-displays.jpg" alt="Indian peacock with vibrant feathers">
+  <a href="https://en.wikipedia.org/wiki/Peafowl" target="_blank">Explore the beauty of Peacocks</a>
+</section>
+
+<section>
+  <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRSlFQC09FG26vlhk4z3EB_4S28b4uvDStsteSR8Y7PNl1R3oeFUtEGKkiqiqoTLaYPntZc6izlKraKE3qE2s07WapwPQI10kO1jRChXg" alt="Hummingbird hovering mid-air">
+  <a href="https://en.wikipedia.org/wiki/Hummingbird" target="_blank">Discover Hummingbirds</a>
+</section>
+
+  </div>
+
+</body>
+</html>
