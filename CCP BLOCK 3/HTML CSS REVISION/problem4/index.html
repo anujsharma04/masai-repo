@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #div{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            width: 25%;
+            margin: auto;
+            padding: 20px;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div id="div">
+        <h1>SignIn</h1>
+      <form action="submit">
+        <label for="username">Enter Username:</label>
+        <input type="text" id="username" name="username" />
+
+        <label for="passcode">Password:</label>
+        <input type="password" id="passcode" name="password" />
+
+        <button type="submit">Submit Form</button>
+      </form>
+    </div>
+  </body>
+</html>
