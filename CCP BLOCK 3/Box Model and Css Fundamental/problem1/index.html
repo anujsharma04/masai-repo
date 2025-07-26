@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS Box Model Demo</title>
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <h1>CSS Box Model Demonstration</h1>
+
+  <div class="box box1">
+    <strong>Box 1 (content-box)</strong><br />
+    Width = 300px + padding + border<br />
+    This box uses <code>box-sizing: content-box</code>. Padding and border are added outside the width.
+  </div>
+
+  <div class="box box2">
+    <strong>Box 2 (border-box)</strong><br />
+    Width = 300px (includes padding + border)<br />
+    This box uses <code>box-sizing: border-box</code>. Total width includes padding and border.
+  </div>
+
+  <div class="box box3">
+    <strong>Box 3 (content-box)</strong><br />
+    Different padding and border<br />
+    This box also uses <code>box-sizing: content-box</code> with horizontal padding.
+  </div>
+
+</body>
+</html>
