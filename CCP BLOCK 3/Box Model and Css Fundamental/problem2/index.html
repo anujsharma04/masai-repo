@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS Display Property Demo</title>
+  <link rel="stylesheet" href="index..css">
+</head>
+<body>
+
+  <h1>CSS Display Properties Demonstration</h1>
+
+  <p class="label">Block Element:</p>
+  <div class="block-element">I am a block-level element (takes full width).</div>
+
+  <p class="label">Inline Element:</p>
+  <span class="inline-element">Inline Text</span>
+  <span>This is adjacent to inline text.</span>
+
+  <p class="label">Inline-block Element:</p>
+  <div class="inline-block-element">Inline-Block Box</div>
+  <div class="inline-block-element">Another Box</div>
+
+  <p class="label">Hidden Element (display: none):</p>
+  <div class="hidden-element" id="hiddenBox">You toggled me on! I'm normally hidden.</div>
+  <button onclick="toggleHidden()">Toggle Hidden Element</button>
+
+  <script>
+    function toggleHidden() {
+      const box = document.getElementById('hiddenBox');
+      if (box.style.display === 'none' || box.style.display === '') {
+        box.style.display = 'block';
+      } else {
+        box.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
