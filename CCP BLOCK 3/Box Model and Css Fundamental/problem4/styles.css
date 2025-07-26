@@ -1,0 +1,51 @@
+/* Apply box-sizing to all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container layout */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* spacing between boxes */
+  padding: 20px;
+  justify-content: center;
+}
+
+/* Boxes */
+.box {
+  width: 100px;
+  height: 100px;
+  background: lightblue;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 100px;
+  font-weight: bold;
+  position: relative; /* removed absolute */
+}
+
+/* Text paragraph */
+.text {
+  position: relative; /* fixed removed */
+  margin: 20px auto;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  max-width: 600px;
+}
+
+/* Responsive tweaks (optional but good practice) */
+@media (max-width: 500px) {
+  .box {
+    width: 80px;
+    height: 80px;
+    font-size: 14px;
+    line-height: 80px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+}
