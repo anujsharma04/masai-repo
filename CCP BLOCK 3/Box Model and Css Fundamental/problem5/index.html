@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Card Grid</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .grid-container {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* Tablet */
+    @media (max-width: 992px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Responsive Card Grid</h1>
+
+  <div class="grid-container">
+    <div class="card">
+      <img src="https://media.istockphoto.com/id/183412466/photo/eastern-bluebirds-male-and-female.jpg?s=612x612&w=0&k=20&c=6_EQHnGedwdjM9QTUF2c1ce7cC3XtlxvMPpU5HAouhc=" alt="Image 1">
+      <h3>Card Title 1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://media.istockphoto.com/id/1307609675/photo/bluebird.jpg?s=612x612&w=0&k=20&c=PdSeFBXLNi2n8vNxDjubRQOsaOw_sJ1w7RhtxjGL5GM=" alt="Image 2">
+      <h3>Card Title 2</h3>
+      <p>Curabitur nec lorem ut erat tincidunt lacinia vitae non orci.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1486365227551-f3f90034a57c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmlyZHxlbnwwfHwwfHx8MA%3D%3D" alt="Image 3">
+      <h3>Card Title 3</h3>
+      <p>Sed hendrerit eros ut enim blandit, a malesuada magna bibendum.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://static.vecteezy.com/system/resources/previews/035/634/140/large_2x/birdgraphy-bird-pictures-most-beautiful-birdgraphy-naturegraphy-free-photo.jpg" alt="Image 4">
+      <h3>Card Title 4</h3>
+      <p>Morbi pretium nisi ac diam lacinia, non vulputate nisl tincidunt.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://media.product.which.co.uk/prod/images/original/gm-ecd2dab2-084d-42c4-889e-cfb540938c2d-bird-photography-main.jpeg" alt="Image 5">
+      <h3>Card Title 5</h3>
+      <p>Donec vel nulla a eros viverra viverra ut eget arcu.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://lh3.googleusercontent.com/proxy/UlytmRPPNLoKqwoRI1vTOaFLY9lzqZvZkAq_B-Bo5qFmV8fp0XuNWj0KfcX0XJgeyhdcKh6XYAWIdwKcLUp1HV1ilaag5ENFfqE3slariwrBrlixOaSWLPLqMkkSc4sIpWqXTk7mC23x5oM_SM85S_ms0LqIP_2CnYuUiLtQJ36--8DefJiLUtTCCeo7kMJoPw" alt="Image 6">
+      <h3>Card Title 6</h3>
+      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.</p>
+    </div>
+  </div>
+
+</body>
+</html>
