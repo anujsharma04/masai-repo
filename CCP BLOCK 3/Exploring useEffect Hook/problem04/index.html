@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>React Stopwatch with Sound</title>
+  <!-- React & ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- Babel for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    function Stopwatch() {
+      const [seconds, setSeconds] = useState(0);
+      const [isRunning, setIsRunning] = useState(false);
+      const [targetTime, setTargetTime] = useState(10); // Default target
+      const intervalRef = useRef(null);
+      const soundRef = useRef(null);
+
+      useEffect(() => {
+        if (isRunning) {
+          intervalRef.current = setInterval(() => {
+            setSeconds(prev => prev + 1);
+          }, 1000);
+        }
+        return () => clearInterval(intervalRef.current);
+      }, [isRunning]);
+
+      useEffect(() => {
+        if (seconds === Number(targetTime) && targetTime > 0) {
+          if (soundRef.current) {
+            soundRef.current.play();
+          } else {
+            console.log("Target time reached!");
+          }
+        }
+      }, [seconds, targetTime]);
+
+      const start = () => setIsRunning(true);
+      const stop = () => setIsRunning(false);
+      const reset = () => {
+        setIsRunning(false);
+        setSeconds(0);
+      };
+
+      return (
+        <div style={{ textAlign: "center", fontFamily: "Arial", marginTop: "50px" }}>
+          <h1>⏱ Stopwatch</h1>
+          <h2>{seconds} seconds</h2>
+
+          <div>
+            <label>
+              Target Time (sec):{" "}
+              <input
+                type="number"
+                value={targetTime}
+                onChange={(e) => setTargetTime(e.target.value)}
+                style={{ width: "60px" }}
+              />
+            </label>
+          </div>
+
+          <div style={{ marginTop: "20px" }}>
+            <button onClick={start} disabled={isRunning}>Start</button>
+            <button onClick={stop} disabled={!isRunning}>Stop</button>
+            <button onClick={reset}>Reset</button>
+          </div>
+
+          {/* Sound Element */}
+          <audio ref={soundRef}>
+            <source src="https://www.soundjay.com/buttons/sounds/beep-07.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Stopwatch />);
+  </script>
+</body>
+</html>
