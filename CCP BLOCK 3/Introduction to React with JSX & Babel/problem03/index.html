@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>React vs Vanilla JS DOM Updates</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin: 5px; padding: 8px 12px; }
+    h2 { color: teal; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    let vanillaUpdateCount = 0; // Counter for Vanilla JS updates
+
+    function App() {
+      const [reactTitle, setReactTitle] = React.useState("React Title");
+      const [reactUpdateCount, setReactUpdateCount] = React.useState(0);
+
+      // Vanilla JS title change
+      function changeVanillaTitle() {
+        const titleEl = document.getElementById("vanilla-title");
+        titleEl.textContent = "Vanilla JS Title " + (vanillaUpdateCount + 1);
+        vanillaUpdateCount++;
+        document.getElementById("vanilla-count").textContent = vanillaUpdateCount;
+      }
+
+      // React title change
+      function changeReactTitle() {
+        setReactTitle("React Title " + (reactUpdateCount + 1));
+        setReactUpdateCount(prev => prev + 1);
+      }
+
+      return (
+        <div>
+          <h1>React vs Vanilla JS: DOM Updates</h1>
+
+          {/* Vanilla JS Section */}
+          <h2 id="vanilla-title">Vanilla JS Title</h2>
+          <p>DOM Updates: <span id="vanilla-count">0</span></p>
+          <button onClick={changeVanillaTitle}>Change Title (Vanilla JS)</button>
+
+          <hr />
+
+          {/* React Section */}
+          <h2>{reactTitle}</h2>
+          <p>DOM Updates: {reactUpdateCount}</p>
+          <button onClick={changeReactTitle}>Change Title (React)</button>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
