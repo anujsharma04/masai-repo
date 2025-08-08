@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Quote Generator</title>
+  <!-- React & ReactDOM via CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- Babel for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f2f2f2;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    blockquote {
+      font-size: 1.2em;
+      font-style: italic;
+      margin: 15px 0;
+      color: #333;
+    }
+    .author {
+      font-weight: bold;
+      color: #555;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #007bff;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 1s linear infinite;
+      margin: 10px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function QuoteApp() {
+      const [quote, setQuote] = useState("");
+      const [author, setAuthor] = useState("");
+      const [loading, setLoading] = useState(true);
+
+      const fetchQuote = async () => {
+        setLoading(true);
+        try {
+          const res = await fetch("https://api.quotable.io/random");
+          const data = await res.json();
+          setQuote(data.content);
+          setAuthor(data.author);
+        } catch (error) {
+          setQuote("Oops! Unable to fetch quote.");
+          setAuthor("");
+        }
+        setLoading(false);
+      };
+
+      useEffect(() => {
+        fetchQuote(); // Initial fetch
+        const interval = setInterval(fetchQuote, 30000); // 30s auto-refresh
+        return () => clearInterval(interval); // Cleanup
+      }, []);
+
+      return (
+        <div className="container">
+          <h2>Daily Quote</h2>
+          {loading ? (
+            <div className="spinner"></div>
+          ) : (
+            <>
+              <blockquote>“{quote}”</blockquote>
+              <div className="author">— {author}</div>
+            </>
+          )}
+          <button onClick={fetchQuote} disabled={loading}>
+            {loading ? "Loading..." : "Get New Quote"}
+          </button>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<QuoteApp />);
+  </script>
+</body>
+</html>
